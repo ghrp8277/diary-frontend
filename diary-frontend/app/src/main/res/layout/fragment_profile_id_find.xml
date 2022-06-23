@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="20dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="내 정보에 등록된 인증 이메일을 입력하시면, 찾을 수 있습니다."
+            android:textSize="13dp"
+            android:textStyle="bold" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal">
+            <!--email input-->
+            <EditText
+                android:id="@+id/idSearchInputEditText"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:autoSizeTextType="uniform"
+                android:hint="&#32;인증 이메일 전체를 입력해 주세요."
+                android:background="@drawable/button_line"
+                android:inputType="text"
+                android:maxLines="1"
+                android:textSize="12dp" />
+
+            <!--email confirm btn-->
+            <Button
+                android:id="@+id/idSearchEmailConfirmBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:background="@color/logo"
+                android:enabled="false"
+                android:text="인증번호 전송"
+                android:textColor="@color/black"
+                android:textSize="12dp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal">
+
+            <FrameLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1">
+
+                <!--auth number input-->
+                <EditText
+                    android:id="@+id/idSearchAuthNumInputEditText"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:autoSizeTextType="uniform"
+                    android:hint="&#32;인증번호 입력"
+                    android:background="@drawable/button_line"
+                    android:inputType="text"
+                    android:maxLines="1"
+                    android:textSize="12dp" />
+
+                <TextView
+                    android:id="@+id/idSearchAuthTimerTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="right"
+                    android:layout_marginRight="5dp"
+                    android:gravity="center"
+                    android:text="3:56"
+                    android:textColor="@color/red"
+                    android:visibility="invisible" />
+
+            </FrameLayout>
+
+            <!--auth number confirm btn-->
+            <Button
+                android:id="@+id/idSearchAuthNumConfirmBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:background="@color/logo"
+                android:enabled="false"
+                android:text="확인"
+                android:textColor="@color/black"
+                android:textSize="12dp" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/idSearchAuthAvailableEmailTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:textColor="@color/red"
+            android:textSize="15dp" />
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/idSearchBtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="20dp"
+        android:elevation="1dp"
+        android:enabled="false"
+        android:text="아이디 찾기"
+        android:textColor="@color/Black"
+        android:textSize="15dp"
+        android:textStyle="bold"
+        app:cornerRadius="10dp" />
+</RelativeLayout>

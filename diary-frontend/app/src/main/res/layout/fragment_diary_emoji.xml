@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    tools:context=".activity.diary.fragments.DiaryEmojiFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1">
+
+            <!-- 제목 -->
+            <TextView
+                android:id="@+id/diaryEmojiTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/font"
+                android:gravity="center"
+                android:text="오늘의 기분은 어떠신가요?"
+                android:textAlignment="center"
+                android:textColor="@color/black"
+                android:textSize="17dp"
+                android:textStyle="bold"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"/>
+        </RelativeLayout>
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="5">
+
+            <com.example.diaryapplication.service.CustomCalender.CustomGridRecyclerView
+                android:id="@+id/emojiRecyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
+
+            <!-- 기분 선택 -->
+            <TextView
+                android:id="@+id/diaryEmojiSelectTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="120dp"
+                android:textColor="@color/Black"
+                android:layout_gravity="bottom|center"
+                android:textSize="17dp" />
+
+            <!-- 다음으로 넘어가기 -->
+            <ImageButton
+                android:id="@+id/nextEmojiButton"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_gravity="bottom|center"
+                android:src="@drawable/ic_baseline_arrow_forward_ios_24"
+                android:contentDescription="submit"
+                android:background="@drawable/button_line"
+                android:layout_marginBottom="50sp"
+                android:elevation="10dp"
+                android:visibility="invisible"
+                app:cornerRadius="10dp"
+                app:shapeAppearanceOverlay="@style/fab_square"/>
+        </FrameLayout>
+    </LinearLayout>
+</FrameLayout>

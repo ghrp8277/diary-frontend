@@ -1,0 +1,6 @@
+<resources>
+    <string name="app_name">DiaryApplication</string>
+    <string name="TOAST_MESSAGE">이메일, 비밀번호를 확인해주세요</string>
+    <string name="KAKAO_APP_KEY">e557c4420ab1ce69a6c9f61603291889</string>
+    <string name="KAKAO_REDIRECT_URI">kakaoe557c4420ab1ce69a6c9f61603291889</string>
+</resources>

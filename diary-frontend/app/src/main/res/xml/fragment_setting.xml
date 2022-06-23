@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <PreferenceCategory
+        android:title="사용자 설정"
+        app:iconSpaceReserved="false">
+
+        <Preference
+            android:selectable="false"
+            android:enabled="true"
+            android:key="username"
+            android:title="사용자 아이디"
+            app:iconSpaceReserved="false"/>
+
+        <CheckBoxPreference
+            android:key="auto_login"
+            android:title="자동 로그인"
+            android:summary="로그인 상태 유지"
+            app:iconSpaceReserved="false"/>
+
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:title="옵션"
+        app:iconSpaceReserved="false">
+
+        <Preference
+            android:title="로그아웃"
+            android:icon="@drawable/ic_baseline_exit_to_app_24"
+            android:key="logout"/>
+    </PreferenceCategory>
+
+</PreferenceScreen>

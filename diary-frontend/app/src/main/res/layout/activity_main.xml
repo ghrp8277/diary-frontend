@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".activity.MainActivity"
+    >
+
+    <!-- 탭 화면 -->
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/mainTabLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:elevation="1dp"
+        app:tabMode="fixed"
+        app:tabGravity="fill" />
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/mainFrameLayout"
+        tools:context=".activity.MainActivity">
+
+        <!-- 달력 -->
+        <fragment
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:name="com.example.diaryapplication.activity.main.CustomCalenderFragment"/>
+
+        <!-- 다이어리 글쓰기 -->
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/createDiaryFab"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right|bottom"
+            android:src="@drawable/ic_baseline_create_24"
+            android:backgroundTint="@color/White"
+            android:contentDescription="submit"
+            android:layout_margin="15sp"
+            app:borderWidth="0dp"
+            app:elevation="10dp"
+            app:fabSize="normal"/>
+
+    </FrameLayout>
+</LinearLayout>

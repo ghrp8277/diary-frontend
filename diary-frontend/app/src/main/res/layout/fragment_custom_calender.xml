@@ -1,0 +1,296 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/diaryListCustomCalender"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/White"
+    android:layout_gravity="center"
+    android:gravity="center">
+
+    <!-- 년도 및 이전 다음 버튼-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:orientation="horizontal">
+
+        <ImageButton
+            android:id="@+id/customCalenderPreBtn"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@color/transparent"
+            android:src="@drawable/ic_baseline_navigate_before_24" />
+
+        <TextView
+            android:id="@+id/monthYearTextView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:textAlignment="center"
+            android:textSize="25sp"
+            android:textColor="@color/Black" />
+
+        <ImageButton
+            android:id="@+id/customCalenderNextBtn"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@color/transparent"
+            android:src="@drawable/ic_baseline_navigate_next_24" />
+    </LinearLayout>
+
+    <!-- 일주일 단위 -->
+    <LinearLayout
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="S"
+            android:textStyle="bold"
+            android:textSize="18sp"
+            android:textAlignment="center"
+            android:textColor="@color/Red" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="M"
+            android:textStyle="bold"
+            android:textSize="18sp"
+            android:textAlignment="center"
+            android:textColor="@color/Black" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="T"
+            android:textStyle="bold"
+            android:textSize="18sp"
+            android:textAlignment="center"
+            android:textColor="@color/Black" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="W"
+            android:textStyle="bold"
+            android:textSize="18sp"
+            android:textAlignment="center"
+            android:textColor="@color/Black" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="T"
+            android:textStyle="bold"
+            android:textSize="18sp"
+            android:textAlignment="center"
+            android:textColor="@color/Black" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="F"
+            android:textStyle="bold"
+            android:textSize="18sp"
+            android:textAlignment="center"
+            android:textColor="@color/Black" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="S"
+            android:textStyle="bold"
+            android:textSize="18sp"
+            android:textAlignment="center"
+            android:textColor="@color/Blue" />
+    </LinearLayout>
+
+    <com.example.diaryapplication.service.CustomCalender.CustomGridRecyclerView
+        android:id="@+id/recyclerView"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollbars="vertical"/>
+
+    <!-- 스켈레톤 ui -->
+    <com.facebook.shimmer.ShimmerFrameLayout
+        android:id="@+id/sflShimmer"
+        android:layout_margin="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <GridLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:columnCount="7"
+            android:rowCount="5">
+            <!-- column -->
+            <Button
+                android:layout_width="0dp"
+                android:layout_columnWeight="1"
+                android:layout_height="90dp"/>
+            <Button
+                android:layout_width="0dp"
+                android:layout_columnWeight="1"
+                android:layout_height="90dp"/>
+            <Button
+                android:layout_width="0dp"
+                android:layout_columnWeight="1"
+                android:layout_height="90dp"/>
+            <Button
+                android:layout_width="0dp"
+                android:layout_columnWeight="1"
+                android:layout_height="90dp"/>
+            <Button
+                android:layout_width="0dp"
+                android:layout_columnWeight="1"
+                android:layout_height="90dp"/>
+            <Button
+                android:layout_width="0dp"
+                android:layout_columnWeight="1"
+                android:layout_height="90dp"/>
+            <Button
+                android:layout_width="0dp"
+                android:layout_columnWeight="1"
+                android:layout_height="90dp"/>
+            <!-- column -->
+            <Button
+                android:layout_width="0dp"
+                android:layout_columnWeight="1"
+                android:layout_height="90dp"/>
+            <Button
+                android:layout_width="0dp"
+                android:layout_columnWeight="1"
+                android:layout_height="90dp"/>
+            <Button
+                android:layout_width="0dp"
+                android:layout_columnWeight="1"
+                android:layout_height="90dp"/>
+            <Button
+                android:layout_width="0dp"
+                android:layout_columnWeight="1"
+                android:layout_height="90dp"/>
+            <Button
+                android:layout_width="0dp"
+                android:layout_columnWeight="1"
+                android:layout_height="90dp"/>
+            <Button
+                android:layout_width="0dp"
+                android:layout_columnWeight="1"
+                android:layout_height="90dp"/>
+            <Button
+                android:layout_width="0dp"
+                android:layout_columnWeight="1"
+                android:layout_height="90dp"/>
+            <!-- column -->
+            <Button
+                android:layout_width="0dp"
+                android:layout_columnWeight="1"
+                android:layout_height="90dp"/>
+            <Button
+                android:layout_width="0dp"
+                android:layout_columnWeight="1"
+                android:layout_height="90dp"/>
+            <Button
+                android:layout_width="0dp"
+                android:layout_columnWeight="1"
+                android:layout_height="90dp"/>
+            <Button
+                android:layout_width="0dp"
+                android:layout_columnWeight="1"
+                android:layout_height="90dp"/>
+            <Button
+                android:layout_width="0dp"
+                android:layout_columnWeight="1"
+                android:layout_height="90dp"/>
+            <Button
+                android:layout_width="0dp"
+                android:layout_columnWeight="1"
+                android:layout_height="90dp"/>
+            <Button
+                android:layout_width="0dp"
+                android:layout_columnWeight="1"
+                android:layout_height="90dp"/>
+            <!-- column -->
+            <Button
+                android:layout_width="0dp"
+                android:layout_columnWeight="1"
+                android:layout_height="90dp"/>
+            <Button
+                android:layout_width="0dp"
+                android:layout_columnWeight="1"
+                android:layout_height="90dp"/>
+            <Button
+                android:layout_width="0dp"
+                android:layout_columnWeight="1"
+                android:layout_height="90dp"/>
+            <Button
+                android:layout_width="0dp"
+                android:layout_columnWeight="1"
+                android:layout_height="90dp"/>
+            <Button
+                android:layout_width="0dp"
+                android:layout_columnWeight="1"
+                android:layout_height="90dp"/>
+            <Button
+                android:layout_width="0dp"
+                android:layout_columnWeight="1"
+                android:layout_height="90dp"/>
+            <Button
+                android:layout_width="0dp"
+                android:layout_columnWeight="1"
+                android:layout_height="90dp"/>
+            <!-- column -->
+            <Button
+                android:layout_width="0dp"
+                android:layout_columnWeight="1"
+                android:layout_height="90dp"/>
+            <Button
+                android:layout_width="0dp"
+                android:layout_columnWeight="1"
+                android:layout_height="90dp"/>
+            <Button
+                android:layout_width="0dp"
+                android:layout_columnWeight="1"
+                android:layout_height="90dp"/>
+            <Button
+                android:layout_width="0dp"
+                android:layout_columnWeight="1"
+                android:layout_height="90dp"/>
+            <Button
+                android:layout_width="0dp"
+                android:layout_columnWeight="1"
+                android:layout_height="90dp"/>
+            <Button
+                android:layout_width="0dp"
+                android:layout_columnWeight="1"
+                android:layout_height="90dp"/>
+            <Button
+                android:layout_width="0dp"
+                android:layout_columnWeight="1"
+                android:layout_height="90dp"/>
+
+        </GridLayout>
+    </com.facebook.shimmer.ShimmerFrameLayout>
+</LinearLayout>

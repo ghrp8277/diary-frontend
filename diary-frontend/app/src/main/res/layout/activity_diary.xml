@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white">
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:orientation="vertical"
+        tools:ignore="MissingConstraints">
+
+        <!-- 뒤로가기 -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:background="@drawable/bottom_border">
+
+            <Button
+                android:id="@+id/diaryBackIntentBtn"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:background="#00ff0000"
+                android:layout_weight="1"
+                android:drawablePadding="12dp"
+                android:padding="10dp"
+                android:drawableLeft="@drawable/ic_baseline_arrow_back_ios_24"/>
+
+            <!-- 날짜 선택 버튼-->
+            <Button
+                android:id="@+id/datePickerButton"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="2"
+                android:background="#00ff0000"
+                android:textSize="17sp"
+                android:textColor="@color/Black"/>
+
+            <!-- 버튼 모음 -->
+            <FrameLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1">
+
+                <LinearLayout
+                    android:id="@+id/linearUpdateAndDelete"
+                    android:visibility="gone"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+
+                    <!-- 수정 버튼 -->
+                    <Button
+                        android:id="@+id/updateDiaryButton"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:padding="20dp"
+                        android:drawablePadding="12dp"
+                        android:background="#00ff0000"
+                        android:drawableLeft="@drawable/ic_baseline_create_24"/>
+
+                    <!-- 삭제 버튼 -->
+                    <Button
+                        android:id="@+id/deleteDiaryButton"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:padding="15dp"
+                        android:drawablePadding="12dp"
+                        android:background="#00ff0000"
+                        android:drawableLeft="@drawable/ic_baseline_delete_24"/>
+                </LinearLayout>
+
+                <!-- 생성 버튼 -->
+                <Button
+                    android:id="@+id/createDiaryButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:drawablePadding="12dp"
+                    android:padding="30dp"
+                    android:background="#00ff0000"
+                    android:visibility="invisible"
+                    android:drawableRight="@drawable/ic_baseline_check_24"/>
+            </FrameLayout>
+
+        </LinearLayout>
+
+        <!-- 프래그먼트 -->
+        <FrameLayout
+            android:id="@+id/diaryFrameLayout"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="10">
+
+            <fragment
+                android:id="@+id/diaryFragment"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:name="com.example.diaryapplication.activity.diary.fragments.DiaryEmojiFragment"/>
+
+        </FrameLayout>
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="submitButton">
+        <item name="android:textColor">#FF000000</item>
+        <item name="background"></item>
+        <item name="android:solidColor"></item>
+    </style>
+    <!-- 커스텀 스피너 -->
+    <style name="CircularProgress" parent="Theme.AppCompat.Light">
+        <item name="colorAccent">@color/Maroon</item>
+        <item name="android:windowBackground">@color/transparent</item>
+        <item name="android:bottomBright">@color/transparent</item>
+        <item name="android:bottomDark">@color/transparent</item>
+        <item name="android:bottomMedium">@color/transparent</item>
+        <item name="android:centerBright">@color/transparent</item>
+        <item name="android:centerDark">@color/transparent</item>
+        <item name="android:centerMedium">@color/transparent</item>
+        <item name="android:fullBright">@color/transparent</item>
+        <item name="android:fullDark">@color/transparent</item>
+        <item name="android:topBright">@color/transparent</item>
+        <item name="android:topDark">@color/transparent</item>
+    </style>
+    <!-- 스플래시 -->
+    <style name="SplashTheme" parent="Theme.AppCompat.NoActionBar">
+        <item name="android:windowBackground">@drawable/splash</item>
+    </style>
+    <!-- EditText 커스텀 -->
+    <style name="EditTextStyles">
+        <item name="android:textCursorDrawable">@color/darkGray</item>
+        <item name="android:textColorHighlight">@color/Gray</item>
+        <item name="android:fontFamily">@font/font</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:background">@android:color/transparent</item>
+        <item name="colorControlActivated">@color/white</item>
+    </style>
+    <!-- 팹 버튼 네모 -->
+    <style name="fab_square" parent="">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">5dp</item>
+    </style>
+</resources>

@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- 네이밍 규칙 : 액티비티명+목적+리소스 -->
+    <!-- main activity -->
+    <item name="mainBtn" type="id" />
+
+    <!-- login activity -->
+    <item name="loginInputIdEditText" type="id"/>
+    <item name="loginInputPwdEditText" type="id"/>
+    <item name="loginInputEmailBtn" type="id"/>
+    <item name="loginInputPwdBtn" type="id"/>
+    <item name="loginIntentMainBtn" type="id"/>
+    <item name="loginIntentSignUpBtn" type="id"/>
+    <item name="loginIdSearchBtn" type="id"/>
+    <item name="loginPasswordChangeBtn" type="id"/>
+    <item name="loginAutoStatusCheckBox" type="id" />
+
+    <!-- signup activity -->
+    <item name="signUpFrameLayout" type="id"/>
+    <item name="signUpFragment" type="id"/>
+    <item name="signUpProgressBar" type="id"/>
+    <item name="signUpBackIntentBtn" type="id"/>
+
+    <!-- profile activity -->
+    <item name="profileFrameLayout" type="id" />
+    <item name="profileTabLayout" type="id" />
+    <item name="profileBackIntentBtn" type="id" />
+
+    <!-- email_confirm fragment -->
+    <item name="emailConfirmInputEditText" type="id"/>
+    <item name="emailConfirmAvailableTextView" type="id"/>
+    <item name="emailConfirmBtn" type="id"/>
+    <item name="emailConfirmNextBtn" type="id"/>
+
+    <!-- email_auth fragment -->
+    <item name="authInputEmailBtn" type="id"/>
+    <item name="authEmailBtn" type="id"/>
+    <item name="authNumberEditText" type="id"/>
+    <item name="authSubmitNumberBtn" type="id" />
+    <item name="authAvailableEmailTextView" type="id"/>
+    <item name="authEmailNextBtn" type="id"/>
+
+    <!-- id_confirm fragment -->
+    <item name="idConfirmInputEditText" type="id"/>
+    <item name="idConfirmAvailableTextView" type="id"/>
+    <item name="idConfirmBtn" type="id"/>
+    <item name="idConfirmNextBtn" type="id"/>
+
+    <!-- password_input fragment -->
+    <item name="passwordInputEditText" type="id"/>
+    <item name="passwordReEditText" type="id"/>
+    <item name="passwordAvailableEmail" type="id"/>
+    <item name="signUpBtn" type="id"/>
+
+    <!-- profile_id_find fragment -->
+    <item name="idSearchInputEditText" type="id"/>
+    <item name="idSearchEmailConfirmBtn" type="id"/>
+    <item name="idSearchAuthNumInputEditText" type="id"/>
+    <item name="idSearchAuthNumConfirmBtn" type="id"/>
+    <item name="idSearchAuthAvailableEmailTextView" type="id"/>
+    <item name="idSearchAuthTimerTextView" type="id"/>
+
+    <!-- profile_id_find_success fragment -->
+    <item name="idFindResultLoginIntentBtn" type="id"/>
+    <item name="idFindResultTextView" type="id"/>
+
+    <!-- profile_password_reset fragment -->
+    <item name="passwordResetIdEditText" type="id" />
+    <item name="passwordResetEmailEditText" type="id" />
+    <item name="newPasswordEmailSendBtn" type="id" />
+
+    <!-- profile_password_select fragment -->
+    <item name="passwordSelectResetPasswordBtn" type="id" />
+    <item name="passwordSelectLoginBtn" type="id" />
+
+    <!-- profile_password_change fragment -->
+    <item name="passwordChangeInputEditText" type="id" />
+    <item name="newPasswordChangeInputEditText" type="id" />
+    <item name="newPasswordChangeReInputEditText" type="id" />
+    <item name="passwordChangeAvailableTextView" type="id" />
+    <item name="passwordChangeBtn" type="id" />
+
+    <!-- diary_list activity -->
+    <item name="diaryListLogoImageView" type="id"/>
+    <item name="diaryListIntentMenuBtn" type="id"/>
+    <item name="diaryListLayout" type="id"/>
+    <item name="diaryListEmojiImageView" type="id"/>
+    <item name="diaryListTitleTextView" type="id"/>
+    <item name="diaryListDateTextView" type="id"/>
+    <item name="diaryListFabWriteBtn" type="id"/>
+
+    <!-- diary_write activity -->
+    <item name="diaryWriteBackBtn" type="id"/>
+
+    <!--이모지 선택 부분 넣기 -->
+    <item name="diaryWriteInputTitleEditText" type="id"/>
+    <item name="diaryWriteInputContentEditText" type="id"/>
+    <item name="diaryWriteFabCompleteBtn" type="id"/>
+
+    <!-- diary_detail activity -->
+    <item name="diaryDetailBackBtn" type="id"/>
+    <item name="diaryDetailTitleTextView" type="id"/>
+    <item name="diaryDetailContentTextView" type="id"/>
+    <item name="diaryDetailFabEditBtn" type="id"/>
+</resources>

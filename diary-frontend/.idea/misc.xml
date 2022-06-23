@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="../../../../layout/custom_preview.xml" value="0.1" />
+        <entry key="app/src/main/res/drawable-v24/item_selector.xml" value="0.1" />
+        <entry key="app/src/main/res/drawable/bottom_border.xml" value="0.1625" />
+        <entry key="app/src/main/res/drawable/ic_baseline_add_24.xml" value="0.247" />
+        <entry key="app/src/main/res/drawable/ic_baseline_arrow_back_ios_24.xml" value="0.247" />
+        <entry key="app/src/main/res/drawable/ic_baseline_arrow_forward_ios_24.xml" value="0.1625" />
+        <entry key="app/src/main/res/drawable/ic_baseline_create_24.xml" value="0.247" />
+        <entry key="app/src/main/res/drawable/ic_baseline_delete_24.xml" value="0.1" />
+        <entry key="app/src/main/res/drawable/prgress.xml" value="0.1" />
+        <entry key="app/src/main/res/drawable/select_emoji_shape.xml" value="0.1" />
+        <entry key="app/src/main/res/drawable/splash.xml" value="0.133" />
+        <entry key="app/src/main/res/drawable/topbottom_border.xml" value="0.1625" />
+        <entry key="app/src/main/res/layout/activity_diary.xml" value="0.15723029839326702" />
+        <entry key="app/src/main/res/layout/activity_login.xml" value="0.22871376811594202" />
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.16312056737588654" />
+        <entry key="app/src/main/res/layout/activity_profile.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/activity_signup.xml" value="0.1609375" />
+        <entry key="app/src/main/res/layout/activity_splash.xml" value="0.16312056737588654" />
+        <entry key="app/src/main/res/layout/fragment_custom_calender.xml" value="0.165" />
+        <entry key="app/src/main/res/layout/fragment_custom_emoji.xml" value="0.2807971014492754" />
+        <entry key="app/src/main/res/layout/fragment_diary_detail.xml" value="0.2807971014492754" />
+        <entry key="app/src/main/res/layout/fragment_diary_emoji.xml" value="0.33" />
+        <entry key="app/src/main/res/layout/fragment_diary_update.xml" value="0.2733990147783251" />
+        <entry key="app/src/main/res/layout/fragment_diary_write.xml" value="0.2807971014492754" />
+        <entry key="app/src/main/res/layout/fragment_email_auth.xml" value="0.2708333333333333" />
+        <entry key="app/src/main/res/layout/fragment_email_comfirm.xml" value="0.2708333333333333" />
+        <entry key="app/src/main/res/layout/fragment_id_comfirm.xml" value="0.2708333333333333" />
+        <entry key="app/src/main/res/layout/fragment_password_input.xml" value="0.2708333333333333" />
+        <entry key="app/src/main/res/layout/fragment_profile_password_change.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/fragment_profile_password_reset.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/fragment_profile_password_select.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/fragment_setting.xml" value="0.2441123188405797" />
+        <entry key="app/src/main/res/layout/progress_layout.xml" value="0.2441123188405797" />
+        <entry key="app/src/main/res/layout/recyclerview_calender_row.xml" value="0.16312056737588654" />
+        <entry key="app/src/main/res/layout/recyclerview_calender_row_shimmer.xml" value="0.1691995947315096" />
+        <entry key="app/src/main/res/layout/recyclerview_date_picker_row.xml" value="0.2327760891590679" />
+        <entry key="app/src/main/res/layout/recyclerview_emoji_row.xml" value="0.1" />
+        <entry key="app/src/main/res/xml/fragment_setting.xml" value="0.1" />
+      </map>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/build/classes" />
+  </component>
+  <component name="ProjectType">
+    <option name="id" value="Android" />
+  </component>
+</project>

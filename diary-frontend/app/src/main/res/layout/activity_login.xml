@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    tools:context=".activity.LoginActivity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="10dp"
+            android:orientation="vertical">
+
+            <!--logo-->
+            <ImageView
+                android:id="@+id/logo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="50dp"
+                android:layout_gravity="center"
+                android:layout_centerHorizontal="true"
+                android:src="@drawable/logo"/>
+
+            <!--email input-->
+            <EditText
+                android:id="@+id/loginInputIdEditText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/button_line"
+                android:fontFamily="@font/font"
+                android:drawablePadding="12dp"
+                android:drawableStart="@drawable/ic_baseline_email_24"
+                android:hint="아이디"
+                android:inputType="text"
+                android:maxLines="1"
+                android:padding="10dp"
+                android:textSize="15dp" />
+
+            <!--password input-->
+            <EditText
+                android:id="@+id/loginInputPwdEditText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/button_line"
+                android:fontFamily="@font/font"
+                android:drawablePadding="12dp"
+                android:drawableStart="@drawable/ic_baseline_lock_24"
+                android:hint="비밀번호"
+                android:inputType="textPassword"
+                android:maxLines="1"
+                android:padding="10dp"
+                android:textSize="15dp" />
+
+            <CheckBox
+                android:id="@+id/loginAutoStatusCheckBox"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/font"
+                android:text="로그인 상태 유지"
+                android:layout_marginBottom="20dp"
+                android:textSize="12dp" />
+
+            <!-- login submit btn -->
+            <Button
+                android:id="@+id/loginIntentMainBtn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/button_round"
+                android:fontFamily="@font/font"
+                android:text="로그인"
+                android:textColor="@color/Black"
+                android:textStyle="bold" />
+
+            <!-- 아이디찾기 , 비밀번호 재설정, 회원가입 -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingLeft="30dp"
+                android:paddingRight="30dp">
+
+                <Button
+                    android:id="@+id/loginIdSearchBtn"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="#00ff0000"
+                    android:fontFamily="@font/font"
+                    android:text="아이디 찾기"
+                    android:textColor="@color/Gray"
+                    android:textSize="10dp" />
+
+                <Button
+                    android:id="@+id/loginPasswordChangeBtn"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="#00ff0000"
+                    android:fontFamily="@font/font"
+                    android:text="비밀번호 재설정"
+                    android:textColor="@color/Gray"
+                    android:textSize="10dp" />
+
+                <Button
+                    android:id="@+id/loginIntentSignUpBtn"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="#00ff0000"
+                    android:fontFamily="@font/font"
+                    android:text="회원가입"
+                    android:textColor="@color/Gray"
+                    android:textSize="10dp" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <!--kakao login-->
+        <ImageButton
+            android:id="@+id/loginKakaoAuthBtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp"
+            android:background="#00ff0000"
+            android:src="@drawable/kakao_login_medium_wide"
+            android:layout_alignParentBottom="true"/>
+
+
+            <!--naver login-->
+<!--            <ImageButton-->
+<!--                android:id="@+id/loginNaverAuthBtn"-->
+<!--                android:layout_width="0dp"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_weight="1"-->
+<!--                android:adjustViewBounds="true"-->
+<!--                android:scaleType="centerInside"-->
+<!--                android:background="@color/Green"-->
+<!--                android:src="@drawable/btn_naver_login"/>-->
+
+    </RelativeLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
+

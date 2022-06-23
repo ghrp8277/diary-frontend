@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="emojiList">
+        <item>행복</item>
+        <item>재미</item>
+        <item>그냥 그래</item>
+        <item>슬픔</item>
+        <item>화나</item>
+    </string-array>
+</resources>
