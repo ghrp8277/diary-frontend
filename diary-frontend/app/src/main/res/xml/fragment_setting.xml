@@ -29,6 +29,11 @@
         app:iconSpaceReserved="false">
 
         <Preference
+            android:title="이모티콘 상점"
+            android:icon="@drawable/ic_baseline_home_24"
+            android:key="store"/>
+
+        <Preference
             android:title="로그아웃"
             android:icon="@drawable/ic_baseline_exit_to_app_24"
             android:key="logout"/>

@@ -1,11 +1,15 @@
 package com.example.diaryapplication.activity.main;
 
+import static android.os.Environment.DIRECTORY_DOWNLOADS;
+
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.SharedPreferences;
+import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
 import android.util.Log;
+import java.io.File;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -15,16 +19,17 @@ import androidx.preference.PreferenceFragmentCompat;
 
 import com.example.diaryapplication.R;
 import com.example.diaryapplication.activity.LoginActivity;
+import com.example.diaryapplication.activity.WebViewActivity;
 import com.example.diaryapplication.service.SharedPreferences.PreferenceManager;
 
-import java.lang.reflect.Method;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.time.LocalDateTime;
-import java.util.function.Function;
 
 
 public class SettingFragment extends PreferenceFragmentCompat {
     CheckBoxPreference autoLoginCheckBoxPreference;
-    Preference logoutPrefernce, usernamePrefernce;
+    Preference logoutPrefernce, usernamePrefernce, storePrefernce;
 
     @Override
     public void onCreatePreferences(@Nullable Bundle savedInstanceState, @Nullable String rootKey) {
@@ -33,9 +38,11 @@ public class SettingFragment extends PreferenceFragmentCompat {
         init();
     }
 
+
     private void init() {
         usernamePrefernce = (Preference) findPreference("username");
         logoutPrefernce = (Preference) findPreference("logout");
+        storePrefernce = (Preference) findPreference("store");
         autoLoginCheckBoxPreference = (CheckBoxPreference) findPreference("auto_login");
 
         // 사용자 아이디 표시
@@ -63,6 +70,23 @@ public class SettingFragment extends PreferenceFragmentCompat {
                 return true;
             }
         });
+
+        // 이모티콘 상점
+        storePrefernce.setOnPreferenceClickListener((new Preference.OnPreferenceClickListener() {
+            @Override
+            public boolean onPreferenceClick(@NonNull Preference preference) {
+//                Intent intent = new Intent(getActivity(), WebViewActivity.class);
+                String username = PreferenceManager.getString(getContext(), "USERNAME");
+                String token = PreferenceManager.getString(getContext(), "ACCESS_TOKEN");
+                Uri store = Uri.parse("http://leejehyeon.synology.me:5432?username=" + username + "&token=" + token);
+                Intent intent = new Intent(Intent.ACTION_VIEW, store);
+
+
+
+                startActivity(intent);
+                return true;
+            }
+        }));
     }
 
     // 다이얼로그

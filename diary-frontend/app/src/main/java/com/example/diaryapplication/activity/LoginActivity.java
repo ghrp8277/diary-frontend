@@ -1,57 +1,71 @@
 package com.example.diaryapplication.activity;
 
+import android.Manifest;
 import android.annotation.SuppressLint;
-import android.app.AlertDialog;
-import android.content.DialogInterface;
+import android.app.Activity;
 import android.content.Intent;
-import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
-import android.content.pm.Signature;
+import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
-import android.util.Base64;
+import android.os.Environment;
+import android.provider.Settings;
 import android.util.Log;
 import android.view.View;
+import android.webkit.WebView;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
-import android.widget.ImageButton;
 import android.widget.Toast;
 
+import androidx.activity.result.ActivityResult;
+import androidx.activity.result.ActivityResultCallback;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 
 import com.example.diaryapplication.R;
 import com.example.diaryapplication.activity.profile.ProfileActivity;
 import com.example.diaryapplication.activity.signup.SignupActivity;
 import com.example.diaryapplication.dto.AuthCredentialsResult;
-import com.example.diaryapplication.service.kakao.KakaoLogin;
 import com.example.diaryapplication.service.Retrofit.DoRetrofitService;
 import com.example.diaryapplication.service.Retrofit.RetrofitClient;
 import com.example.diaryapplication.service.Retrofit.SimpleRetrofit;
 import com.example.diaryapplication.service.SharedPreferences.PreferenceManager;
-import com.kakao.sdk.user.model.User;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
-import java.util.Date;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Stream;
+import java.util.zip.ZipEntry;
+import java.util.zip.ZipInputStream;
 
 import retrofit2.Call;
 import retrofit2.Response;
 
 // https://develop-writing.tistory.com/31
-public class LoginActivity extends AppCompatActivity implements View.OnClickListener, KakaoLogin.IKLoginResult {
+public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
     private EditText loginInputPwdEditText, loginInputIdEditText;
     private Button loginIntentMainBtn, loginIntentSignUpBtn, loginIdSearchBtn, loginPasswordChangeBtn;
-    private ImageButton loginKakaoAuthBtn;
     CheckBox loginAutoStatusCheckBox;
+
+    ActivityResultLauncher<Intent> activityResultLauncher;
 
     public void onCreate(Bundle saveInstanceState) {
         super.onCreate(saveInstanceState);
         setContentView(R.layout.activity_login);
         init();
-
-        // 카카오 개발자 홈페이지에 등록할 해시키 구하기
-        getHashKey();
     }
 
     // sub 액티비티에서 다시 메인 액티비티로 돌아올때 실행한다
@@ -86,14 +100,31 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         loginIdSearchBtn = (Button) findViewById(R.id.loginIdSearchBtn);
         loginPasswordChangeBtn = (Button) findViewById(R.id.loginPasswordChangeBtn);
         loginAutoStatusCheckBox = (CheckBox) findViewById(R.id.loginAutoStatusCheckBox);
-        loginKakaoAuthBtn = (ImageButton) findViewById(R.id.loginKakaoAuthBtn);
 
         loginIntentMainBtn.setOnClickListener(this);
         loginAutoStatusCheckBox.setOnClickListener(this);
         loginIntentSignUpBtn.setOnClickListener(this);
         loginIdSearchBtn.setOnClickListener(this);
         loginPasswordChangeBtn.setOnClickListener(this);
-        loginKakaoAuthBtn.setOnClickListener(this);
+
+        activityResultLauncher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), new ActivityResultCallback<ActivityResult>() {
+            @Override
+            public void onActivityResult(ActivityResult result) {
+                if (result.getResultCode() == Activity.RESULT_OK) {
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+                        if (Environment.isExternalStorageManager()) {
+                            Toast.makeText(getApplicationContext(), "Permission Granted", Toast.LENGTH_SHORT).show();
+                        } else {
+                            Toast.makeText(getApplicationContext(), "Permission Denied", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                }
+            }
+        });
+
+        if (!checkPermission()) {
+            requestpermission();
+        }
     }
 
     @SuppressLint("NonConstantResourceId")
@@ -104,7 +135,11 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         switch (id) {
             case R.id.loginIntentMainBtn:
                 // 로그인
-                signIn(view);
+                if (checkPermission()) {
+                    signIn(view);
+                } else {
+                    requestpermission();
+                }
                 break;
             case R.id.loginAutoStatusCheckBox:
                 // 자동 로그인
@@ -135,10 +170,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                         new Intent(LoginActivity.this, ProfileActivity.class)
                                 .putExtra("index", 1)
                 );
-                break;
-            case R.id.loginKakaoAuthBtn:
-                // 카카오 로그인
-                showMakeDialog("'다이어리'에서 '카카오톡'을(를)\n열려고 합니다.");
                 break;
         }
     }
@@ -213,101 +244,31 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         }, this);
     }
 
-
-    // 해시값을 가져옴
-    private void getHashKey(){
-        PackageInfo packageInfo = null;
-        try {
-            packageInfo = getPackageManager().getPackageInfo(getPackageName(), PackageManager.GET_SIGNATURES);
-        } catch (PackageManager.NameNotFoundException e) {
-            e.printStackTrace();
+    public boolean checkPermission() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+            return Environment.isExternalStorageManager();
         }
-        if (packageInfo == null)
-            Log.e("test", "KeyHash:null");
+        else {
+            int readCheck = ContextCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.READ_EXTERNAL_STORAGE);
+            int writeCheck = ContextCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.WRITE_EXTERNAL_STORAGE);
 
-        for (Signature signature : packageInfo.signatures) {
+            return readCheck == PackageManager.PERMISSION_GRANTED && writeCheck == PackageManager.PERMISSION_GRANTED;
+        }
+    }
+
+    public void requestpermission() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
             try {
-                MessageDigest md = MessageDigest.getInstance("SHA");
-                md.update(signature.toByteArray());
-                Log.d("test", Base64.encodeToString(md.digest(), Base64.DEFAULT));
-            } catch (NoSuchAlgorithmException e) {
-                Log.e("test", "Unable to get MessageDigest. signature=" + signature, e);
+                Intent intent = new Intent(Settings.ACTION_MANAGE_ALL_FILES_ACCESS_PERMISSION);
+                intent.addCategory("android.intent.category.DEFAULT");
+                intent.setData(Uri.parse(String.format("package:%s", new Object[]{getApplicationContext().getPackageManager()})));
+                activityResultLauncher.launch(intent);
+            }
+            catch (Exception e) {
+                Intent intent = new Intent();
+                intent.setAction(Settings.ACTION_MANAGE_ALL_FILES_ACCESS_PERMISSION);
+                activityResultLauncher.launch(intent);
             }
         }
-    }
-
-    // 다이얼로그
-    private void showMakeDialog(String message) {
-        AlertDialog.Builder builder = new AlertDialog.Builder(this)
-                .setMessage(message)
-                .setPositiveButton("열기", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        kakaoLogin();
-                    }
-                })
-                .setNegativeButton("취소", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        return;
-                    }
-                });
-        AlertDialog msgDlg = builder.create();
-        msgDlg.show();
-    }
-
-    private void kakaoLogin() {
-        KakaoLogin.getInstance().setListener(this);
-        KakaoLogin.getInstance().login(this);
-    }
-
-    // 카카오 로그인 성공 (OAuth)
-    @Override
-    public void onKakaoLoginResult(User user, String accessToken, String refreshToken, Date expiresAt) {
-        // 콜백 메서드
-        String id = "kakao.my/user_" + user.getId();
-
-        // 로그인 및 회원가입 시도 (서버)
-        doKakaoLogin(id, accessToken, refreshToken, expiresAt);
-    }
-
-    // 카카오 로그인 및 회원가입 시도 (서버)
-    private void doKakaoLogin(String id, String accessToken, String refreshToken, Date expiresAt) {
-        Call<String> doKakaoLogin = RetrofitClient.getApiService(getApplicationContext()).doKakaoLogin(refreshToken, expiresAt, id);
-        SimpleRetrofit.RetrofitService(doKakaoLogin, new DoRetrofitService() {
-            @Override
-            public void doResponse(Call call, Response response) {
-                try {
-                    // 엑세스 토큰, 리프레시 토큰 저장
-                    PreferenceManager.setString(getApplicationContext(), "ACCESS_TOKEN", accessToken);
-                    PreferenceManager.setString(getApplicationContext(), "REFRESH_TOKEN", refreshToken);
-
-                    // 로그인한 유저 정보 저장
-                    PreferenceManager.setString(getApplicationContext(), "USERNAME", id);
-
-                    // 로그인 성공 여부 저장
-                    PreferenceManager.setBoolean(getApplicationContext(), "SIGN_IN_AS", true);
-
-                    // OAuth 로그인 성공 여부 저장
-                    PreferenceManager.setBoolean(getApplicationContext(), "IS_PUBLIC", true);
-
-                    onChangeActivity(
-                            new Intent(LoginActivity.this, MainActivity.class)
-                    );
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
-
-            @Override
-            public void doFailure(Call call, Throwable t) {
-                Toast.makeText(getApplicationContext(), t.getMessage(), Toast.LENGTH_SHORT).show();
-            }
-
-            @Override
-            public void doResponseFailedCodeMatch(int statusCode, String message) {
-
-            }
-        }, this);
     }
 }

@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">DiaryApplication</string>
+    <string name="TOAST_MESSAGE">이메일, 비밀번호를 확인해주세요</string>
+    <string name="KAKAO_APP_KEY">e557c4420ab1ce69a6c9f61603291889</string>
+    <string name="KAKAO_REDIRECT_URI">kakaoe557c4420ab1ce69a6c9f61603291889</string>
+    <string name="title_activity_test">TestActivity</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="first_fragment_label">First Fragment</string>
+    <string name="second_fragment_label">Second Fragment</string>
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+
+    <string name="hello_first_fragment">Hello first fragment</string>
+    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+</resources>

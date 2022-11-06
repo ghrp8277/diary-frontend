@@ -121,29 +121,6 @@
                     android:textSize="10dp" />
             </LinearLayout>
         </LinearLayout>
-
-        <!--kakao login-->
-        <ImageButton
-            android:id="@+id/loginKakaoAuthBtn"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="20dp"
-            android:background="#00ff0000"
-            android:src="@drawable/kakao_login_medium_wide"
-            android:layout_alignParentBottom="true"/>
-
-
-            <!--naver login-->
-<!--            <ImageButton-->
-<!--                android:id="@+id/loginNaverAuthBtn"-->
-<!--                android:layout_width="0dp"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:layout_weight="1"-->
-<!--                android:adjustViewBounds="true"-->
-<!--                android:scaleType="centerInside"-->
-<!--                android:background="@color/Green"-->
-<!--                android:src="@drawable/btn_naver_login"/>-->
-
     </RelativeLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
 

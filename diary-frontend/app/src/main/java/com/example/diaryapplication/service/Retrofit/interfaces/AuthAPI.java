@@ -76,13 +76,4 @@ public interface AuthAPI {
             @Path("number") String number,
             @Query("email") String e_mail
     );
-
-    //회원가입
-    @FormUrlEncoded
-    @POST(API.KAKAO_LOGIN)
-    Call<String> doKakaoLogin(
-            @Field("token") String token,
-            @Field("token_expiresAt") Date token_expiresAt,
-            @Field("username") String username
-    );
 }

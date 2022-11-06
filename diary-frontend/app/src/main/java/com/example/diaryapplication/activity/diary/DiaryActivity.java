@@ -1,8 +1,12 @@
 package com.example.diaryapplication.activity.diary;
 
+import android.Manifest;
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.os.Environment;
 import android.os.Parcelable;
 import android.util.Log;
 import android.view.View;
@@ -11,6 +15,7 @@ import android.widget.DatePicker;
 import android.widget.LinearLayout;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
@@ -23,11 +28,20 @@ import com.example.diaryapplication.activity.diary.fragments.DiaryWriteFragment;
 import com.example.diaryapplication.dto.BoardResult;
 import com.example.diaryapplication.dto.EmotionFileResult;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
 import java.io.Serializable;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.Calendar;
+import java.util.zip.ZipEntry;
+import java.util.zip.ZipInputStream;
 
 public class DiaryActivity extends AppCompatActivity implements View.OnClickListener {
     Button diaryBackIntentBtn, datePickerButton, createDiaryButton, updateDiaryButton, deleteDiaryButton;

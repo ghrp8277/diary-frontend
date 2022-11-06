@@ -1,15 +1,17 @@
 package com.example.diaryapplication.activity;
 
-import android.app.AlertDialog;
-import android.content.DialogInterface;
+import android.app.Activity;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
+import android.os.Environment;
 import android.util.Log;
 import android.view.View;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
-import android.widget.ImageButton;
+import android.widget.Toast;
 
+import androidx.activity.result.ActivityResult;
+import androidx.activity.result.ActivityResultCallback;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
@@ -18,13 +20,26 @@ import com.example.diaryapplication.activity.diary.DiaryActivity;
 import com.example.diaryapplication.activity.main.CustomCalenderFragment;
 import com.example.diaryapplication.activity.main.SettingFragment;
 import com.example.diaryapplication.service.CustomCalender.CalenderUtil;
-import com.example.diaryapplication.service.SharedPreferences.PreferenceManager;
-import com.google.android.material.bottomappbar.BottomAppBar;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.tabs.TabLayout;
 
+import java.io.BufferedInputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.nio.file.FileSystems;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.zip.ZipEntry;
+import java.util.zip.ZipInputStream;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
     private FloatingActionButton createDiaryFab;
@@ -84,6 +99,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
             }
         });
+
+        downloadEmojiFileToSave();
     }
 
     @Override
@@ -109,5 +126,112 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     public void onBackPressed() {
         // super.onBackPressed();
+    }
+
+    public void downloadEmojiFileToSave() {
+        // 구매한 이모티콘 파일 압축 해제
+        File download = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS);
+
+        Path source = Paths.get(download.getPath() + File.separator + "emoji.zip");
+        Path target = Paths.get(getFilesDir().getAbsolutePath() + File.separator + "emoji" + File.separator);
+
+        File file = new File(download, "emoji.zip");
+
+        // 파일 존재 여부 확인
+        if (file.exists()) {
+            Log.i("test", "다운로드 폴더에서 파일 존재함");
+
+            unzipFile(source, target);
+
+            // 파일 삭제
+            try {
+                Files.delete(source);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+            moveFile();
+        }
+    }
+
+    public void moveFile() {
+        // 파일 이동
+        String path = getFilesDir().getAbsolutePath() + File.separator + "emoji" + File.separator + "images";
+
+        File diretory = new File(path);
+
+        File[] files = diretory.listFiles();
+
+        List<String> fileNameList = new ArrayList<>();
+
+        for (int i = 0; i < files.length; i++) {
+            fileNameList.add(files[i].getName());
+
+            Path fromPath = Paths.get(path + File.separator + files[i].getName());
+
+            Path toPath = Paths.get(getFilesDir().getAbsolutePath() + File.separator + "emoji" + File.separator + files[i].getName());;
+
+            try {
+                Files.move(fromPath, toPath);
+            }
+            catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+
+        // 파일 삭제
+        try {
+            Files.delete(Paths.get(path));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void unzipFile(Path sourceZip, Path targetDir) {
+        try (ZipInputStream zis = new ZipInputStream(new FileInputStream(sourceZip.toFile()))) {
+
+            // list files in zip
+            ZipEntry zipEntry = zis.getNextEntry();
+            while (zipEntry != null) {
+
+                boolean isDirectory = false;
+                if (zipEntry.getName().endsWith(File.separator)) {
+                    isDirectory = true;
+                }
+
+                Path newPath = zipSlipProtect(zipEntry, targetDir);
+                if (isDirectory) {
+                    Files.createDirectories(newPath);
+                } else {
+                    if (newPath.getParent() != null) {
+                        if (Files.notExists(newPath.getParent())) {
+                            Files.createDirectories(newPath.getParent());
+                        }
+                    }
+                    // copy files
+                    Files.copy(zis, newPath, StandardCopyOption.REPLACE_EXISTING);
+                }
+
+                zipEntry = zis.getNextEntry();
+            }
+            zis.closeEntry();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public Path zipSlipProtect(ZipEntry zipEntry, Path targetDir)
+            throws IOException {
+
+        // test zip slip vulnerability
+        Path targetDirResolved = targetDir.resolve(zipEntry.getName());
+
+        // make sure normalized file still has targetDir as its prefix
+        // else throws exception
+        Path normalizePath = targetDirResolved.normalize();
+        if (!normalizePath.startsWith(targetDir)) {
+            throw new IOException("Bad zip entry: " + zipEntry.getName());
+        }
+        return normalizePath;
     }
 }

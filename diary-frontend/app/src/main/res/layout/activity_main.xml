@@ -43,6 +43,5 @@
             app:borderWidth="0dp"
             app:elevation="10dp"
             app:fabSize="normal"/>
-
     </FrameLayout>
 </LinearLayout>

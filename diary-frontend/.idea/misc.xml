@@ -21,6 +21,8 @@
         <entry key="app/src/main/res/layout/activity_profile.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_signup.xml" value="0.1609375" />
         <entry key="app/src/main/res/layout/activity_splash.xml" value="0.16312056737588654" />
+        <entry key="app/src/main/res/layout/activity_test.xml" value="0.15579710144927536" />
+        <entry key="app/src/main/res/layout/activity_webview.xml" value="0.25" />
         <entry key="app/src/main/res/layout/fragment_custom_calender.xml" value="0.165" />
         <entry key="app/src/main/res/layout/fragment_custom_emoji.xml" value="0.2807971014492754" />
         <entry key="app/src/main/res/layout/fragment_diary_detail.xml" value="0.2807971014492754" />
